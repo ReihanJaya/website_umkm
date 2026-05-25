@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+
+  @@map("admin")
+}
+
+model Category {
+  id    Int        @id @default(autoincrement())
+  name  String     @unique
+  slug  String     @unique
+  items MenuItem[]
+
+  @@map("category")
+}
+
+model MenuItem {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String?     @db.Text
+  price       Float
+  image       String?
+  categoryId  Int
+  available   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  category    Category    @relation(fields: [categoryId], references: [id])
+  orderItems  OrderItem[]
+
+  @@index([categoryId])
+  @@map("menuitem")
+}
+
+model Order {
+  id            Int          @id @default(autoincrement())
+  orderCode     String       @unique
+  tableNumber   Int
+  status        OrderStatus  @default(PENDING)
+  totalAmount   Float
+  paymentMethod String       @default("QRIS")
+  isPaid        Boolean      @default(false)
+  notes         String?      @db.Text
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  items         OrderItem[]
+
+  @@map("order")
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  quantity   Int
+  subtotal   Float
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  order      Order    @relation(fields: [orderId], references: [id])
+
+  @@index([menuItemId])
+  @@index([orderId])
+  @@map("orderitem")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  READY
+  COMPLETED
+  CANCELLED
+
+  @@map("order_status")
+}
