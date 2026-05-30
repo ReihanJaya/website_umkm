@@ -46,7 +46,7 @@ export default function OrderTrackingPage() {
     <div className="min-h-screen bg-bg-surface flex flex-col">
       <Navbar />
       
-      <main className="container pt-32 pb-20 px-6 max-w-2xl mx-auto">
+      <main className="container pt-28 md:pt-36 pb-20 px-4 md:px-6 max-w-2xl mx-auto">
         <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -61,7 +61,7 @@ export default function OrderTrackingPage() {
             </div>
 
             {/* Simple Step Progress */}
-            <div className="bg-white p-10 rounded-[32px] border border-border shadow-sm mb-10">
+            <div className="bg-white p-6 sm:p-10 rounded-[24px] sm:rounded-[32px] border border-border shadow-sm mb-10">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center relative gap-8 md:gap-4">
                     {/* Progress Line Desktop */}
                     <div className="absolute top-[26px] left-0 right-0 h-1 bg-bg-surface rounded-full hidden md:block">
@@ -94,7 +94,7 @@ export default function OrderTrackingPage() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-[32px] border border-border p-8 md:p-10 text-center mb-8">
+            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-border p-6 sm:p-8 md:p-10 text-center mb-8">
                 <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-4 opacity-60">Status Saat Ini</p>
                 <h2 className="text-4xl font-black text-text-main mb-3 tracking-tighter">
                     {getStatusLabel(order?.status)}
@@ -102,7 +102,7 @@ export default function OrderTrackingPage() {
                 <div className="w-12 h-1.5 bg-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="bg-white rounded-[32px] border border-border p-8 md:p-10 mb-10">
+            <div className="bg-white rounded-[24px] sm:rounded-[32px] border border-border p-6 sm:p-8 md:p-10 mb-10">
                 <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
                     <span className="w-1.5 h-6 bg-primary rounded-full"></span>
                     Detail Menu
@@ -123,7 +123,7 @@ export default function OrderTrackingPage() {
                 </div>
             </div>
 
-            <button className="w-full p-8 bg-primary-soft hover:bg-primary/10 border border-primary/20 rounded-[32px] transition-all flex items-center justify-between group">
+            <button className="w-full p-6 sm:p-8 bg-primary-soft hover:bg-primary/10 border border-primary/20 rounded-[24px] sm:rounded-[32px] transition-all flex items-center justify-between group">
                 <div className="text-left">
                     <p className="text-[10px] text-text-muted font-bold uppercase tracking-widest mb-1">Butuh sesuatu?</p>
                     <p className="font-extrabold text-lg text-primary">Panggil Pelayan Meja No. {order?.tableNumber}</p>

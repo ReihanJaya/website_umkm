@@ -43,7 +43,7 @@ export default function CartPage() {
     <div className="min-h-screen bg-bg-surface/30 pb-40">
       <Navbar />
       
-      <main className="container pt-32 px-6 max-w-3xl">
+      <main className="container pt-28 md:pt-36 px-4 md:px-6 max-w-3xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-3">
@@ -70,9 +70,9 @@ export default function CartPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white p-5 rounded-[24px] border border-border flex gap-5 hover:border-primary/20 transition-all group"
+                className="bg-white p-4 sm:p-5 rounded-[20px] sm:rounded-[24px] border border-border flex gap-4 sm:gap-5 hover:border-primary/20 transition-all group"
               >
-                <div className="relative w-24 h-24 rounded-[18px] overflow-hidden bg-bg-surface flex-shrink-0 border border-border">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-[14px] sm:rounded-[18px] overflow-hidden bg-bg-surface flex-shrink-0 border border-border">
                   {item.image ? (
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                   ) : (
@@ -96,22 +96,24 @@ export default function CartPage() {
                     </button>
                   </div>
                   
-                  <div className="flex justify-between items-end mt-4">
-                    <span className="text-text-main font-black text-lg">{formatRupiah(item.price)}</span>
+                  <div className="flex justify-between items-end mt-2 sm:mt-4">
+                    <span className="text-text-main font-black text-base sm:text-lg">{formatRupiah(item.price)}</span>
                     
-                    <div className="flex items-center gap-4 bg-bg-surface rounded-2xl p-1.5 border border-border">
+                    <div className="flex items-center gap-2.5 sm:gap-4 bg-bg-surface rounded-2xl p-1 sm:p-1.5 border border-border">
                       <button 
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 flex items-center justify-center rounded-xl bg-white hover:bg-gray-100 text-text-muted border border-border transition-colors"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-white hover:bg-gray-100 text-text-muted border border-border transition-colors"
                       >
-                        <Minus size={16} />
+                        <Minus size={14} className="sm:hidden" />
+                        <Minus size={16} className="hidden sm:block" />
                       </button>
-                      <span className="w-4 text-center font-bold text-sm">{item.quantity}</span>
+                      <span className="w-4 text-center font-bold text-xs sm:text-sm">{item.quantity}</span>
                       <button 
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 flex items-center justify-center rounded-xl bg-primary text-white border border-primary hover:bg-primary-dark transition-colors"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-primary text-white border border-primary hover:bg-primary-dark transition-colors"
                       >
-                        <Plus size={16} />
+                        <Plus size={14} className="sm:hidden" />
+                        <Plus size={16} className="hidden sm:block" />
                       </button>
                     </div>
                   </div>
@@ -132,8 +134,8 @@ export default function CartPage() {
       </main>
 
       {/* Floating Price Bar */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 sm:p-10 bg-white/80 backdrop-blur-xl border-t border-border z-50">
-        <div className="container flex flex-col sm:flex-row items-center justify-between gap-6 max-w-3xl">
+      <div className="fixed bottom-0 left-0 right-0 p-5 pb-8 sm:p-8 bg-white/80 backdrop-blur-xl border-t border-border z-50">
+        <div className="container flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 max-w-3xl px-4 md:px-6">
           <div className="flex flex-col items-center sm:items-start">
             <span className="text-text-muted text-xs font-bold uppercase tracking-widest mb-1">Total Pembayaran</span>
             <span className="text-3xl font-black text-text-main tracking-tighter">

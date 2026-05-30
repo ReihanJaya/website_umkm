@@ -6,8 +6,12 @@ export default withAuth(
     const url = req.nextUrl
     const hostname = req.headers.get("host") || ""
 
-    // Cek apakah ini link admin (misal: admin.domain.com atau link-admin.vercel.app)
-    const isAdminDomain = hostname.startsWith("admin.") || hostname.includes("-admin")
+    // Cek apakah ini link admin (misal: admin.domain.com, admin-website.vercel.app, atau link-admin.vercel.app)
+    const isAdminDomain = 
+      hostname.startsWith("admin.") || 
+      hostname.startsWith("admin-") || 
+      hostname.includes("-admin") ||
+      hostname.includes("admin.")
 
     if (isAdminDomain) {
       // Jika buka root (/) di link admin, arahkan ke dashboard admin

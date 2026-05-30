@@ -42,7 +42,7 @@ export default function Navbar() {
           </Link>
           <button 
             onClick={() => document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' })}
-            className="hidden md:flex btn-primary !py-2.5 !px-6 !text-sm"
+            className="!hidden md:!flex btn-primary !py-2.5 !px-6 !text-sm"
           >
             Pesan Sekarang
           </button>

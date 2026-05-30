@@ -47,7 +47,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       
-      <main className="container pt-32 pb-20 px-6 max-w-2xl">
+      <main className="container pt-28 md:pt-36 pb-20 px-4 md:px-6 max-w-2xl">
         <button 
           onClick={() => router.back()}
           className="flex items-center gap-2 text-text-muted hover:text-primary mb-10 transition-all font-bold text-sm uppercase tracking-widest"
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
 
         <div className="space-y-8">
           {/* Order Summary */}
-          <div className="bg-bg-surface rounded-[32px] border border-border p-8 md:p-10 shadow-sm">
+          <div className="bg-bg-surface rounded-[24px] sm:rounded-[32px] border border-border p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-xl font-bold mb-8 flex items-center gap-3">
               Ringkasan Menu
             </h2>
@@ -91,7 +91,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Payment Method */}
-          <div className="bg-bg-surface rounded-[32px] border border-border p-8 md:p-10">
+          <div className="bg-bg-surface rounded-[24px] sm:rounded-[32px] border border-border p-6 sm:p-8 md:p-10">
             <h2 className="text-xl font-bold mb-8">Metode Pembayaran</h2>
             <div className="p-6 bg-white border border-primary/20 rounded-2xl flex items-center gap-5 shadow-sm">
               <div className="w-14 h-14 bg-primary rounded-[16px] flex items-center justify-center text-white shadow-lg shadow-primary/20">

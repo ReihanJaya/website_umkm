@@ -71,9 +71,9 @@ export default function TableMenuPage() {
     <div className="min-h-screen bg-white pb-40">
       <Navbar />
 
-      <main className="container pt-32">
+      <main className="container pt-28 md:pt-36 px-4 md:px-6">
         {/* Header Meja */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-2">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                 <div className="inline-flex items-center gap-2 bg-primary-soft text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-4">
                     Pesan dari Meja {tableNumber}
@@ -97,7 +97,7 @@ export default function TableMenuPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-10 px-2 sticky top-20 bg-white z-40 pt-2 border-b border-border mb-12">
+        <div className="flex justify-start items-center gap-4 overflow-x-auto no-scrollbar pb-4 px-4 sticky top-[72px] bg-white z-40 pt-2 border-b border-border mb-12 -mx-4 md:mx-0 md:px-0">
             {[
                 { name: 'Makanan', icon: Utensils, id: 1 },
                 { name: 'Minuman', icon: Coffee, id: 2 },
@@ -106,7 +106,7 @@ export default function TableMenuPage() {
                 <button
                     key={cat.id}
                     onClick={() => document.getElementById(`sec-${cat.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                    className="flex items-center gap-3 px-8 py-3.5 rounded-2xl transition-all font-bold text-sm bg-bg-surface text-text-muted hover:bg-primary-soft hover:text-primary border border-border shrink-0"
+                    className="flex items-center gap-3 px-6 py-3 rounded-2xl transition-all font-bold text-sm bg-bg-surface text-text-muted hover:bg-primary-soft hover:text-primary border border-border shrink-0"
                 >
                     <cat.icon size={18} />
                     {cat.name}
@@ -147,8 +147,8 @@ export default function TableMenuPage() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {items.map((item: any) => (
-                                <div key={item.id} className="bg-bg-surface p-4 rounded-[32px] border border-border flex items-center gap-4 group transition-all hover:bg-white hover:shadow-xl hover:shadow-black/[0.02]">
-                                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-white shadow-sm relative">
+                                <div key={item.id} className="bg-bg-surface p-3 sm:p-4 rounded-[20px] sm:rounded-[32px] border border-border flex items-center gap-3 sm:gap-4 group transition-all hover:bg-white hover:shadow-xl hover:shadow-black/[0.02]">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden flex-shrink-0 bg-white shadow-sm relative">
                                         {item.image ? (
                                           <Image 
                                             src={item.image} 
@@ -163,19 +163,19 @@ export default function TableMenuPage() {
                                           </div>
                                         )}
                                     </div>
-                                    <div className="flex-grow">
-                                        <h4 className="font-bold text-sm mb-1 group-hover:text-primary transition-colors">{item.name}</h4>
+                                    <div className="flex-grow min-w-0">
+                                        <h4 className="font-bold text-sm mb-1 truncate group-hover:text-primary transition-colors">{item.name}</h4>
                                         <div className="flex items-center gap-1 mb-1.5">
                                             <Star size={12} className="fill-warning text-warning" />
                                             <span className="text-[10px] font-bold">4.8</span>
                                         </div>
-                                        <span className="text-sm font-black">{formatRupiah(item.price)}</span>
+                                        <span className="text-sm font-black text-text-main">{formatRupiah(item.price)}</span>
                                     </div>
                                     <button 
                                         onClick={() => handleAdd(item)}
-                                        className="w-10 h-10 bg-white text-primary rounded-2xl flex items-center justify-center border border-border shadow-sm hover:bg-primary-soft active:scale-95 transition-all"
+                                        className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-primary rounded-xl sm:rounded-2xl flex items-center justify-center border border-border shadow-sm hover:bg-primary-soft active:scale-95 transition-all flex-shrink-0"
                                     >
-                                        <Plus size={20} strokeWidth={3} />
+                                        <Plus size={18} strokeWidth={3} />
                                     </button>
                                 </div>
                             ))}

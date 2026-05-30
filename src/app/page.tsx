@@ -70,30 +70,30 @@ export default function OrderInLandingPage() {
       <Navbar />
 
       {/* SECTION 1 — HERO */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-28 pb-12 md:pt-36 md:pb-20 relative overflow-hidden">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-black text-text-main mb-6 leading-[1.1]">
-              Nikmati Makanan <br />
-              <span className="text-primary italic text-6xl">Favorit</span> Anda
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-main mb-6 leading-[1.15]">
+              Nikmati Makanan <br className="hidden md:inline" />
+              <span className="text-primary italic text-4xl sm:text-5xl md:text-6xl lg:text-7xl">Favorit</span> Anda
             </h1>
-            <p className="text-text-muted text-lg max-w-md mb-10 leading-relaxed font-medium">
+            <p className="text-text-muted text-base md:text-lg max-w-md mb-10 leading-relaxed font-medium">
               Pesan makanan favorit Anda dengan mudah, cepat, dan aman langsung dari meja Anda.
             </p>
             
             {/* 3 Step Icons in Hero */}
-            <div className="flex flex-wrap gap-8 mb-12">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-6 md:gap-8 mb-12">
                {[
                  { title: 'Scan QR', icon: QrCode, desc: 'Scan QR Code di meja Anda', bg: 'bg-[#FFF5F1]' },
                  { title: 'Pilih Menu', icon: ChefHat, desc: 'Pilih makanan & minuman favorit', bg: 'bg-[#FFF5F1]' },
                  { title: 'Bayar QRIS', icon: CreditCard, desc: 'Bayar mudah pakai QRIS', bg: 'bg-[#FFF5F1]' }
                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                     <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center text-primary`}>
+                  <div key={idx} className="flex items-start gap-3 min-w-[140px]">
+                     <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center text-primary flex-shrink-0`}>
                         <item.icon size={20} />
                      </div>
                      <div>
@@ -103,15 +103,15 @@ export default function OrderInLandingPage() {
                   </div>
                ))}
             </div>
-
+ 
             <button 
               onClick={() => document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-primary py-5 px-10 text-lg shadow-xl shadow-primary/20"
+              className="btn-primary py-4 px-8 text-base md:py-5 md:px-10 md:text-lg shadow-xl shadow-primary/20"
             >
               Mulai Pesan <ChevronRight size={22} />
             </button>
           </motion.div>
-
+ 
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -120,12 +120,12 @@ export default function OrderInLandingPage() {
           >
             {/* Hero Image Frame from the reference */}
             <div className="relative">
-                 <div className="absolute -top-10 -right-10 w-20 h-20 text-border opacity-50 z-0">
+                 <div className="hidden md:block absolute -top-10 -right-10 w-20 h-20 text-border opacity-50 z-0">
                     <div className="grid grid-cols-4 gap-2">
                         {[...Array(16)].map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-current rounded-full"></div>)}
                     </div>
                  </div>
-                 <div className="relative z-10 w-[300px] h-[300px] md:w-[480px] md:h-[480px] rounded-[60px] overflow-hidden border-[12px] border-white shadow-2xl">
+                 <div className="relative z-10 w-[270px] h-[270px] sm:w-[320px] sm:h-[320px] md:w-[480px] md:h-[480px] rounded-[40px] md:rounded-[60px] overflow-hidden border-[8px] md:border-[12px] border-white shadow-2xl">
                     <Image 
                         src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=1000" 
                         alt="Hero Food" 
@@ -135,13 +135,14 @@ export default function OrderInLandingPage() {
                     />
                  </div>
                  {/* Floating Badge */}
-                 <div className="absolute bottom-10 -left-10 bg-white p-5 rounded-3xl shadow-xl border border-border z-20 flex items-start gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                        <Flame size={20} className="fill-primary" />
+                 <div className="absolute bottom-4 left-4 md:bottom-10 md:-left-10 bg-white p-4 md:p-5 rounded-[20px] md:rounded-3xl shadow-xl border border-border z-20 flex items-start gap-3">
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+                        <Flame size={16} className="fill-primary md:hidden" />
+                        <Flame size={20} className="fill-primary hidden md:block" />
                     </div>
                     <div>
-                        <p className="text-xl font-black leading-none">10K+</p>
-                        <p className="text-[10px] text-text-muted mt-1 font-bold uppercase tracking-widest">Pesanan Selesai<br/>Setiap Bulan</p>
+                        <p className="text-lg md:text-xl font-black leading-none">10K+</p>
+                        <p className="text-[9px] md:text-[10px] text-text-muted mt-1 font-bold uppercase tracking-wider md:tracking-widest">Pesanan Selesai<br/>Setiap Bulan</p>
                     </div>
                  </div>
             </div>
@@ -150,9 +151,9 @@ export default function OrderInLandingPage() {
       </section>
 
       {/* SECTION 2 — MENU KATEGORI TABS */}
-      <section id="menu-section" className="bg-white sticky top-[73px] z-40 border-b border-border shadow-sm">
+      <section id="menu-section" className="bg-white sticky top-[72px] z-40 border-b border-border shadow-sm">
         <div className="container py-4">
-            <div className="flex justify-center items-center gap-4 md:gap-10 overflow-x-auto no-scrollbar">
+            <div className="flex justify-start md:justify-center items-center gap-4 md:gap-10 overflow-x-auto no-scrollbar px-4 md:px-0">
                 {[
                     { name: 'Semua', icon: LayoutGrid },
                     { name: 'Makanan', icon: Utensils },
@@ -165,7 +166,7 @@ export default function OrderInLandingPage() {
                             if (cat.name === 'Semua') window.scrollTo({ top: 1100, behavior: 'smooth' })
                             else document.getElementById(`sec-${cat.name.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                         }}
-                        className={`flex items-center gap-3 px-6 py-3 rounded-2xl transition-all font-bold text-sm ${
+                        className={`flex items-center gap-3 px-6 py-3 rounded-2xl transition-all font-bold text-sm shrink-0 ${
                             idx === 0 ? 'bg-primary-soft text-primary' : 'text-text-muted hover:bg-bg-surface hover:text-text-main'
                         }`}
                     >
@@ -252,10 +253,10 @@ export default function OrderInLandingPage() {
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {(data.menu || []).filter((m: any) => m.categoryId === cat.id).slice(0, 4).map((item: any) => (
-                        <div key={item.id} className="bg-bg-surface p-3 rounded-[24px] border border-border flex items-center gap-4 group transition-all hover:bg-white hover:shadow-xl hover:shadow-black/[0.02]">
-                            <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-white shadow-sm relative">
+                        <div key={item.id} className="bg-bg-surface p-3 sm:p-4 rounded-[20px] sm:rounded-[24px] border border-border flex items-center gap-3 sm:gap-4 group transition-all hover:bg-white hover:shadow-xl hover:shadow-black/[0.02]">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden flex-shrink-0 bg-white shadow-sm relative">
                                 {item.image && (
                                   <Image 
                                     src={item.image} 
@@ -266,17 +267,17 @@ export default function OrderInLandingPage() {
                                   />
                                 )}
                             </div>
-                            <div className="flex-grow">
-                                <h4 className="font-bold text-sm mb-1 group-hover:text-primary transition-colors">{item.name}</h4>
+                            <div className="flex-grow min-w-0">
+                                <h4 className="font-bold text-sm mb-1 truncate group-hover:text-primary transition-colors">{item.name}</h4>
                                 <div className="flex items-center gap-1 mb-1.5">
                                     <Star size={12} className="fill-warning text-warning" />
                                     <span className="text-[10px] font-bold">4.7</span>
                                 </div>
-                                <span className="text-sm font-black">{formatRupiah(item.price)}</span>
+                                <span className="text-sm font-black text-text-main">{formatRupiah(item.price)}</span>
                             </div>
                             <button 
                                 onClick={() => handleAdd(item)}
-                                className="w-9 h-9 bg-white text-primary rounded-xl flex items-center justify-center border border-border shadow-sm hover:bg-primary-soft active:scale-95 transition-all"
+                                className="w-9 h-9 sm:w-10 sm:h-10 bg-white text-primary rounded-xl sm:rounded-2xl flex items-center justify-center border border-border shadow-sm hover:bg-primary-soft active:scale-95 transition-all flex-shrink-0"
                             >
                                 <Plus size={18} strokeWidth={3} />
                             </button>

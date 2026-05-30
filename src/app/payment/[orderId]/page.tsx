@@ -72,7 +72,7 @@ export default function PaymentPage() {
     <div className="min-h-screen bg-bg-surface flex flex-col">
       <Navbar />
       
-      <main className="container flex-grow pt-32 pb-20 px-6 max-w-lg mx-auto text-center">
+      <main className="container flex-grow pt-28 md:pt-36 px-4 md:px-6 max-w-lg mx-auto text-center">
         <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function PaymentPage() {
             <h1 className="text-3xl font-black mb-10 tracking-tight text-text-main">Scan QRIS Untuk Bayar</h1>
 
             {/* QRIS Frame Clean */}
-            <div className="bg-white p-8 rounded-[40px] shadow-premium mb-10 border border-border">
+            <div className="bg-white p-6 sm:p-8 rounded-[24px] sm:rounded-[40px] shadow-premium mb-10 border border-border">
                 <div className="flex justify-between items-center mb-6 px-4">
                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/GPN_Logo.svg/1024px-GPN_Logo.svg.png" className="h-4 object-contain opacity-40 grayscale" alt="GPN" />
                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/QRIS_logo.svg/1200px-QRIS_logo.svg.png" className="h-4 object-contain" alt="QRIS" />
