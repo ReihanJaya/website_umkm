@@ -8,7 +8,12 @@
   --color-primary-light: #FF8F5E;
   --color-text-main: #1A1A1A;
   --color-text-muted: #6B7280;
+  --color-text-light: #9CA3AF;
   --color-bg-surface: #F9FAFB;
+  --color-border: #E5E7EB;
+  --color-danger: #EF4444;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
   
   --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-main: 'Inter', sans-serif;

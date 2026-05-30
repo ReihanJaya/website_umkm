@@ -14,7 +14,12 @@ const config: Config = {
         "primary-light": "#FF8F5E",
         "text-main": "#1A1A1A",
         "text-muted": "#6B7280",
+        "text-light": "#9CA3AF",
         "bg-surface": "#F9FAFB",
+        border: "#E5E7EB",
+        danger: "#EF4444",
+        success: "#10B981",
+        warning: "#F59E0B",
       },
       fontFamily: {
         heading: ['var(--font-heading)'],
