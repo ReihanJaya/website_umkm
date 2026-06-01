@@ -68,13 +68,18 @@ export default function CheckoutPage() {
             </h2>
             
             <div className="space-y-4">
-              {state.items.map(item => (
-                <div key={item.id} className="flex justify-between items-center py-4 border-b border-border/50 last:border-0">
-                  <div className="flex flex-col">
-                    <span className="text-text-main font-bold text-base leading-tight">{item.name}</span>
+              {state.items.map((item, idx) => (
+                <div key={`${item.id}-${item.notes || ''}-${idx}`} className="flex justify-between items-center py-4 border-b border-border/50 last:border-0">
+                  <div className="flex flex-col min-w-0 pr-4">
+                    <span className="text-text-main font-bold text-base leading-tight truncate">{item.name}</span>
                     <span className="text-text-muted text-xs font-medium mt-1">{item.quantity}x @{formatRupiah(item.price)}</span>
+                    {item.notes && (
+                      <span className="text-[11px] text-text-muted bg-white border border-border/80 px-2 py-0.5 rounded-lg mt-1 inline-block self-start truncate max-w-xs">
+                        Catatan: {item.notes}
+                      </span>
+                    )}
                   </div>
-                  <span className="font-extrabold text-text-main">{formatRupiah(item.price * item.quantity)}</span>
+                  <span className="font-extrabold text-text-main shrink-0">{formatRupiah(item.price * item.quantity)}</span>
                 </div>
               ))}
               

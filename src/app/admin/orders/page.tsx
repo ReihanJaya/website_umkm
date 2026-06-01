@@ -167,17 +167,26 @@ export default function AdminOrdersPage() {
                   </div>
 
                   {/* Items */}
-                  <div className="space-y-2 mb-5">
-                    {order.items.slice(0, 3).map((item: any) => (
-                      <div key={item.id} className="flex justify-between items-center text-sm">
-                        <p className="text-text-main font-bold truncate mr-2">
-                          <span className="text-primary">{item.quantity}x</span> {item.menuItem.name}
-                        </p>
-                        <p className="text-text-muted font-medium shrink-0">{formatRupiah(item.subtotal)}</p>
+                  <div className="space-y-3.5 mb-5">
+                    {order.items.slice(0, 4).map((item: any) => (
+                      <div key={item.id} className="text-sm">
+                        <div className="flex justify-between items-center">
+                          <p className="text-text-main font-bold truncate mr-2">
+                            <span className="text-primary">{item.quantity}x</span> {item.menuItem.name}
+                          </p>
+                          <p className="text-text-muted font-medium shrink-0">{formatRupiah(item.subtotal)}</p>
+                        </div>
+                        {item.notes && (
+                          <div className="mt-1">
+                            <span className="text-[10px] font-bold text-primary bg-primary-soft border border-primary/10 px-2.5 py-0.5 rounded-lg inline-block truncate max-w-full">
+                              Catatan: {item.notes}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     ))}
-                    {order.items.length > 3 && (
-                      <p className="text-[10px] text-text-light font-bold">+{order.items.length - 3} item lainnya</p>
+                    {order.items.length > 4 && (
+                      <p className="text-[10px] text-text-light font-bold">+{order.items.length - 4} item lainnya</p>
                     )}
                     <div className="pt-3 border-t border-border/50 flex justify-between items-center">
                       <span className="text-xs font-bold text-text-muted">Total</span>

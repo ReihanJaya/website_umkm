@@ -110,10 +110,15 @@ export default function OrderTrackingPage() {
                 <div className="space-y-4">
                     {order?.items.map((item: any) => (
                         <div key={item.id} className="flex justify-between items-center py-4 border-b border-border/50 last:border-0">
-                            <div className="flex flex-col">
-                                <span className="text-text-main font-bold text-base leading-tight">{item.quantity}x {item.menuItem.name}</span>
+                            <div className="flex flex-col min-w-0 pr-4">
+                                <span className="text-text-main font-bold text-base leading-tight truncate">{item.quantity}x {item.menuItem.name}</span>
+                                {item.notes && (
+                                    <span className="text-xs text-text-muted bg-bg-surface border border-border/60 px-2.5 py-0.5 rounded-lg mt-1.5 inline-block self-start truncate max-w-xs">
+                                        Catatan: {item.notes}
+                                    </span>
+                                )}
                             </div>
-                            <span className="font-extrabold text-text-main">{formatRupiah(item.subtotal)}</span>
+                            <span className="font-extrabold text-text-main shrink-0">{formatRupiah(item.subtotal)}</span>
                         </div>
                     ))}
                     <div className="pt-6 flex justify-between items-center">

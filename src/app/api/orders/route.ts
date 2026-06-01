@@ -18,6 +18,7 @@ export async function POST(request: Request) {
             menuItemId: item.id,
             quantity: item.quantity,
             subtotal: item.price * item.quantity,
+            notes: item.notes || ""
           })),
         },
       },

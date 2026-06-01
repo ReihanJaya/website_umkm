@@ -64,7 +64,7 @@ export default function CartPage() {
           <AnimatePresence mode='popLayout'>
             {state.items.map((item, idx) => (
               <motion.div 
-                key={item.id}
+                key={`${item.id}-${item.notes || ''}-${idx}`}
                 layout
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -82,15 +82,23 @@ export default function CartPage() {
                   )}
                 </div>
 
-                <div className="flex-grow flex flex-col justify-between py-1">
-                  <div className="flex justify-between items-start">
-                    <div>
-                        <h3 className="font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">{item.name}</h3>
-                        <p className="text-text-muted text-xs font-semibold uppercase tracking-widest opacity-60">Dapur Nusantara</p>
+                <div className="flex-grow flex flex-col justify-between py-1 min-w-0">
+                  <div className="flex justify-between items-start gap-2">
+                    <div className="min-w-0">
+                        <h3 className="font-bold text-base sm:text-lg leading-tight mb-1 group-hover:text-primary transition-colors truncate">{item.name}</h3>
+                        <p className="text-text-muted text-[10px] sm:text-xs font-semibold uppercase tracking-widest opacity-60">Dapur Nusantara</p>
+                        
+                        {/* Display custom item notes */}
+                        {item.notes && (
+                          <div className="inline-flex items-center gap-1.5 mt-1.5 text-xs text-text-muted bg-bg-surface border border-border/80 px-2.5 py-1 rounded-xl">
+                            <span className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
+                            <span className="truncate">Catatan: {item.notes}</span>
+                          </div>
+                        )}
                     </div>
                     <button 
-                      onClick={() => removeItem(item.id)}
-                      className="text-text-light hover:text-danger p-2 transition-colors"
+                      onClick={() => removeItem(item.id, item.notes)}
+                      className="text-text-light hover:text-danger p-2 transition-colors shrink-0"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -101,7 +109,7 @@ export default function CartPage() {
                     
                     <div className="flex items-center gap-2.5 sm:gap-4 bg-bg-surface rounded-2xl p-1 sm:p-1.5 border border-border">
                       <button 
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item.id, item.quantity - 1, item.notes)}
                         className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-white hover:bg-gray-100 text-text-muted border border-border transition-colors"
                       >
                         <Minus size={14} className="sm:hidden" />
@@ -109,7 +117,7 @@ export default function CartPage() {
                       </button>
                       <span className="w-4 text-center font-bold text-xs sm:text-sm">{item.quantity}</span>
                       <button 
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.id, item.quantity + 1, item.notes)}
                         className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-primary text-white border border-primary hover:bg-primary-dark transition-colors"
                       >
                         <Plus size={14} className="sm:hidden" />

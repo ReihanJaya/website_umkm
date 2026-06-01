@@ -9,6 +9,7 @@ export interface CartItem {
   price: number
   image: string | null
   quantity: number
+  notes?: string
 }
 
 interface CartState {
@@ -18,8 +19,8 @@ interface CartState {
 
 type CartAction =
   | { type: 'ADD_ITEM'; payload: CartItem }
-  | { type: 'REMOVE_ITEM'; payload: number }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: number, quantity: number } }
+  | { type: 'REMOVE_ITEM'; payload: { id: number; notes?: string } }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: number; notes?: string; quantity: number } }
   | { type: 'CLEAR_CART' }
   | { type: 'SET_TABLE'; payload: number }
   | { type: 'HYDRATE'; payload: CartState }
@@ -27,8 +28,8 @@ type CartAction =
 const CartContext = createContext<{
   state: CartState
   addItem: (item: CartItem) => void
-  removeItem: (id: number) => void
-  updateQuantity: (id: number, quantity: number) => void
+  removeItem: (id: number, notes?: string) => void
+  updateQuantity: (id: number, quantity: number, notes?: string) => void
   clearCart: () => void
   setTable: (table: number) => void
   totalItems: number
@@ -38,26 +39,33 @@ const CartContext = createContext<{
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const existingItem = state.items.find(item => item.id === action.payload.id)
+      const existingItem = state.items.find(
+        item => item.id === action.payload.id && (item.notes || '') === (action.payload.notes || '')
+      )
       if (existingItem) {
         return {
           ...state,
           items: state.items.map(item =>
-            item.id === action.payload.id
-              ? { ...item, quantity: item.quantity + 1 }
+            item.id === action.payload.id && (item.notes || '') === (action.payload.notes || '')
+              ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) }
               : item
           ),
         }
       }
-      return { ...state, items: [...state.items, { ...action.payload, quantity: 1 }] }
+      return { ...state, items: [...state.items, { ...action.payload, quantity: action.payload.quantity || 1 }] }
     }
     case 'REMOVE_ITEM':
-      return { ...state, items: state.items.filter(item => item.id !== action.payload) }
+      return {
+        ...state,
+        items: state.items.filter(
+          item => !(item.id === action.payload.id && (item.notes || '') === (action.payload.notes || ''))
+        ),
+      }
     case 'UPDATE_QUANTITY':
       return {
         ...state,
         items: state.items.map(item =>
-          item.id === action.payload.id
+          item.id === action.payload.id && (item.notes || '') === (action.payload.notes || '')
             ? { ...item, quantity: Math.max(1, action.payload.quantity) }
             : item
         ),
@@ -99,12 +107,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     toast.success(`${item.name} ditambahkan ke keranjang`)
   }, [])
 
-  const removeItem = React.useCallback((id: number) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: id })
+  const removeItem = React.useCallback((id: number, notes?: string) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: { id, notes } })
   }, [])
 
-  const updateQuantity = React.useCallback((id: number, quantity: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } })
+  const updateQuantity = React.useCallback((id: number, quantity: number, notes?: string) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity, notes } })
   }, [])
 
   const clearCart = React.useCallback(() => {

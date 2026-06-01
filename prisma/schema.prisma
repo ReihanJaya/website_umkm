@@ -66,6 +66,7 @@ model OrderItem {
   menuItemId Int
   quantity   Int
   subtotal   Float
+  notes      String?  @db.Text
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   order      Order    @relation(fields: [orderId], references: [id])
 
